@@ -3,7 +3,7 @@ const cors = require("cors");
 const app = express();
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken')
-dotenv.config();
+dotenv.config()
 
 const { initializeDatabase } = require("./db/db.connect");
 const {User} = require("./models/user.model")
