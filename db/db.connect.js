@@ -4,8 +4,6 @@ const mongoURI = process.env.MONGODB_URL
 const initializeDatabase = async () => {
   try {
     const connection = await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
     });
     if (connection) {
       console.log('Connected Successfully');
