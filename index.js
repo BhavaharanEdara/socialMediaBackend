@@ -274,7 +274,11 @@ app.put("/users/unfollow_user/:id", verifyJwt,async(req,res)=>{
 app.put("/users/:id", verifyJwt,async(req,res)=>{
   try{
     const updatedUser = await updateUser(req.params.id,req.body);
-    res.send(updatedUser)
+    const userObject = updatedUser.toObject();
+    delete userObject.password;
+    const accessToken = jwt.sign(userObject, process.env.JWT_ACCESS_SECRET, { expiresIn: "24h" });
+    res.send({updatedUser:userObject, token:accessToken})
+
   }
   catch(error){
     res.status(400).json({error: "Failed to add users"})
