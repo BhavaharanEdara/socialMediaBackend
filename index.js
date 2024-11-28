@@ -276,7 +276,7 @@ app.put("/users/:id", verifyJwt,async(req,res)=>{
     const updatedUser = await updateUser(req.params.id,req.body);
         const userObject = updatedUser.toObject();
     delete userObject.password;
-    const accessToken = jwt.sign(userObject, process.env.JWT_ACCESS_SECRET, { expiresIn: "15m" });
+    const accessToken = jwt.sign(userObject, process.env.JWT_SECRET, { expiresIn: "24h" });
     res.send({updatedUser:userObject, token:accessToken})
 
   }
