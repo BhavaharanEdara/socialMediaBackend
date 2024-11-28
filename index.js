@@ -274,10 +274,7 @@ app.put("/users/unfollow_user/:id", verifyJwt,async(req,res)=>{
 app.put("/users/:id", verifyJwt,async(req,res)=>{
   try{
     const updatedUser = await updateUser(req.params.id,req.body);
-    const userObject = updatedUser.toObject();
-    delete userObject.password;
-    const accessToken = jwt.sign(userObject, process.env.JWT_ACCESS_SECRET, { expiresIn: "24h" });
-    res.send({updatedUser:userObject, token:accessToken})
+    res.send(updatedUser)
 
   }
   catch(error){
