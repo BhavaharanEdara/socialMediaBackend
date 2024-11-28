@@ -281,7 +281,7 @@ app.put("/users/:id", verifyJwt,async(req,res)=>{
 
   }
   catch(error){
-    res.status(400).json({error: "Failed to add users", msg:error})
+    res.status(400).json({error: "Failed to add users", msg:error.message})
   }
 })
 
